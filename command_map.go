@@ -1,16 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
-func commandMap() error {
-	fmt.Print("Welcome to the Pokedex!\n")
-	fmt.Print("Usage:\n")
-	fmt.Print("\n")
-	for _, cmd := range getCommand() {
-		fmt.Printf("%s: %s\n", cmd.name, cmd.description)
-	}
-	fmt.Println()
+func commandMap(c *Config) error {
 	return nil
 }

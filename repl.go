@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+type Config struct {
+	nextURL *string
+	prevURL *string
+}
+
 type cliCommand struct {
 	name        string
 	description string
@@ -27,13 +32,13 @@ func getCommand() map[string]cliCommand {
 		},
 		"map": {
 			name:        "map",
-			description: "Displays location area names",
+			description: "Displays next page of locations",
 			callback:    commandMap,
 		},
 	}
 }
 
-func startRepl() {
+func startRepl(c *Config) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
