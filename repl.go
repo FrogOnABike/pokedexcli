@@ -15,7 +15,7 @@ type Config struct {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*Config) error
 }
 
 func getCommand() map[string]cliCommand {
@@ -56,7 +56,7 @@ func startRepl(c *Config) {
 			continue
 		}
 
-		err := command.callback()
+		err := command.callback(c)
 		if err != nil {
 			fmt.Println("Error: ", err)
 			continue
