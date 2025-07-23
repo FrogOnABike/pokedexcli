@@ -5,11 +5,14 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/frogonabike/pokedexcli/internal/pokeapi"
 )
 
 type Config struct {
-	nextURL *string
-	prevURL *string
+	pokeapiClient pokeapi.Client
+	nextURL       *string
+	prevURL       *string
 }
 
 type cliCommand struct {
