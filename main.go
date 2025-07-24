@@ -1,9 +1,13 @@
 package main
 
-import "github.com/frogonabike/pokedexcli/internal/pokeapi"
+import (
+	"time"
+
+	"github.com/frogonabike/pokedexcli/internal/pokeapi"
+)
 
 func main() {
-	pokeClient := pokeapi.NewClient()
+	pokeClient := pokeapi.NewClient(5 * time.Second)
 	c := &Config{
 		pokeapiClient: pokeClient,
 	}
