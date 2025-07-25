@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -25,6 +26,10 @@ func commandMap(c *Config) error {
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
+		return err
+	}
+	var la_JSON []respLocationArea
+	if err := json.Unmarshal(body, &la_JSON); err != nil {
 		return err
 	}
 
