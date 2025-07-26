@@ -1,38 +1,18 @@
 package main
 
-import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-	"time"
-)
+import "fmt"
 
 func commandMap(c *Config) error {
-	client := &http.Client{
-		Timeout: 5 * time.Second,
-	}
-
-	req, err := http.NewRequest("GET", "https://pokeapi.co/api/v2/location-area", nil)
+	locationsResp, err := c.pokeapiClient.ListLocations(c.nextURL)
 	if err != nil {
 		return err
 	}
+	c.nextURL = &locationsResp.Next
+	c.prevURL = &locationsResp.Previous
 
-	res, err := client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer res.Body.Close()
-
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		return err
-	}
-	var la_JSON []respLocationArea
-	if err := json.Unmarshal(body, &la_JSON); err != nil {
-		return err
+	for _, r := range locationsResp.Results {
+		fmt.Println(r.Name)
 	}
 
-	fmt.Println(string(body))
 	return nil
 }
