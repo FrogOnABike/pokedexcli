@@ -6,8 +6,8 @@ import (
 )
 
 type Cache struct {
+	mu       sync.Mutex
 	item     map[string]cacheEntry
-	mu       *sync.Mutex
 	interval time.Duration
 }
 
@@ -17,8 +17,10 @@ type cacheEntry struct {
 }
 
 // Create a new cache
-func NewCache(i time.Duration) Cache {
-	nc := Cache{
+func NewCache(i time.Duration) *Cache {
+	ci := make(map[string]cacheEntry)
+	nc := &Cache{
+		item:     ci,
 		interval: i,
 	}
 	nc.reapLoop()
@@ -26,7 +28,7 @@ func NewCache(i time.Duration) Cache {
 }
 
 // Add entry to cache
-func (c Cache) Add(key string, data []byte) {
+func (c *Cache) Add(key string, data []byte) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	ce := cacheEntry{
@@ -37,19 +39,19 @@ func (c Cache) Add(key string, data []byte) {
 }
 
 // Check for and fetch key from cache if found
-func (c Cache) Get(key string) ([]byte, bool) {
+func (c *Cache) Get(key string) ([]byte, bool) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	item, exists := c.item[key]
 	if exists {
 		return item.val, true
 	} else {
-		return nil, false
+		return []byte{}, false
 	}
 }
 
 // Cache pruning - checks for entres older than cacheTimeout and removes then (Currently 5sec)
-func (c Cache) reapLoop() {
+func (c *Cache) reapLoop() {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	ticker := time.NewTicker(c.interval)

@@ -18,6 +18,6 @@ func NewClient(timeout time.Duration, cacheTimeout time.Duration) Client {
 		httpClient: http.Client{
 			Timeout: timeout,
 		},
-		clientCache: pokecache.NewCache(cacheTimeout),
+		clientCache: *pokecache.NewCache(cacheTimeout),
 	}
 }
