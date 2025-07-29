@@ -19,12 +19,12 @@ type cacheEntry struct {
 // Create a new cache
 func NewCache(i time.Duration) *Cache {
 	ci := make(map[string]cacheEntry)
-	nc := &Cache{
+	nc := Cache{
 		item:     ci,
 		interval: i,
 	}
 	nc.reapLoop()
-	return nc
+	return &nc
 }
 
 // Add entry to cache

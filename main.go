@@ -8,8 +8,8 @@ import (
 
 func main() {
 	pokeClient := pokeapi.NewClient(5*time.Second, 5*time.Second)
-	c := &Config{
-		pokeapiClient: pokeClient,
+	c := Config{
+		pokeapiClient: *pokeClient,
 	}
-	startRepl(c)
+	startRepl(&c)
 }
