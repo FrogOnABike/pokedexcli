@@ -56,13 +56,11 @@ func (c *Cache) reapLoop() {
 	defer c.mu.Unlock()
 	ticker := time.NewTicker(c.interval)
 	defer ticker.Stop()
-	done := make(chan bool)
+	// done := make(chan bool)
 
 	go func() {
 		for {
 			select {
-			case <-done:
-				return
 			case <-ticker.C:
 				for k, i := range c.item {
 					itemAge := time.Since(i.createdAt)
