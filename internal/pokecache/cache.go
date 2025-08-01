@@ -67,21 +67,4 @@ func (c *Cache) reapLoop() {
 		}
 	}()
 
-	// defer ticker.Stop()
-	// done := make(chan bool)
-
-	// go func() {
-	// 	for {
-	// 		select {
-	// 	case <-ticker.C:
-	// 		for k, i := range c.item {
-	// 			itemAge := time.Since(i.createdAt)
-	// 			if itemAge > c.interval {
-	// 				delete(c.item, k)
-	// 			}
-	// 		}
-	// 		}
-	// 	}
-	// }()
-
 }
