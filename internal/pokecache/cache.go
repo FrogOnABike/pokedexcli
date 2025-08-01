@@ -55,21 +55,33 @@ func (c *Cache) reapLoop() {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	ticker := time.NewTicker(c.interval)
-	defer ticker.Stop()
-	// done := make(chan bool)
 
 	go func() {
-		for {
-			select {
-			case <-ticker.C:
-				for k, i := range c.item {
-					itemAge := time.Since(i.createdAt)
-					if itemAge > c.interval {
-						delete(c.item, k)
-					}
+		for range ticker.C {
+			for k, i := range c.item {
+				itemAge := time.Since(i.createdAt)
+				if itemAge > c.interval {
+					delete(c.item, k)
 				}
 			}
 		}
 	}()
+
+	// defer ticker.Stop()
+	// done := make(chan bool)
+
+	// go func() {
+	// 	for {
+	// 		select {
+	// 	case <-ticker.C:
+	// 		for k, i := range c.item {
+	// 			itemAge := time.Since(i.createdAt)
+	// 			if itemAge > c.interval {
+	// 				delete(c.item, k)
+	// 			}
+	// 		}
+	// 		}
+	// 	}
+	// }()
 
 }
