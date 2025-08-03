@@ -18,7 +18,7 @@ type Config struct {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*Config) error
+	callback    func(c *Config, a string) error
 }
 
 func getCommand() map[string]cliCommand {
@@ -43,28 +43,42 @@ func getCommand() map[string]cliCommand {
 			description: "Displays previous page of locations",
 			callback:    commandMapb,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Displays Pokemon that can be found at the specified location",
+			callback:    commandExplore,
+		},
 	}
 }
 
 func startRepl(c *Config) {
+	arg := ""
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
 		userInput := reader.Text()
 		userWords := cleanInput(userInput)
+
+		//check if a command passed by confirming length of returned words map - if 0 then no command supplied
 		if len(userWords) == 0 {
 			fmt.Println("Please enter a command")
 			continue
 		}
 
+		//check command is valie by passing to getCommand and capturing err if raised
 		command, ok := getCommand()[userWords[0]]
 		if !ok {
 			fmt.Println("Invalid Command")
 			continue
 		}
 
-		err := command.callback(c)
+		//check if extra arguments passed - for example if supplying a location name or pokemon - only using first string after the command (userWords[1] item at present)
+		if len(userWords) >= 2 {
+			arg = userWords[1]
+		}
+
+		err := command.callback(c, arg)
 		if err != nil {
 			fmt.Println("Error: ", err)
 			continue
