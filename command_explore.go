@@ -2,11 +2,20 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 func commandExplore(c *Config, a string) error {
-	fmt.Println("Closing the Pokedex... Goodbye!")
-	os.Exit(0)
+	if len(a) == 0 {
+		fmt.Println("Please specifiy a location")
+		return nil
+	}
+
+	areaResp, err := c.pokeapiClient.ExploreLocation(a)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(areaResp)
+
 	return nil
 }
