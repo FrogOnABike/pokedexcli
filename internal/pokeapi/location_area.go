@@ -11,6 +11,8 @@ type Results struct {
 	URL  string `json:"url"`
 }
 
+//Area Detail Struct - Includes Pokemon listings
+
 type respLocationDetail struct {
 	EncounterMethodRates []EncounterMethodRates `json:"encounter_method_rates"`
 	GameIndex            int                    `json:"game_index"`

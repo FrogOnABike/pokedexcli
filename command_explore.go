@@ -15,7 +15,12 @@ func commandExplore(c *Config, a string) error {
 		return err
 	}
 
-	fmt.Println(areaResp)
+	fmt.Printf("Exploring %s...\n", a)
+	fmt.Println("Found Pokemon:")
+	for _, r := range areaResp.PokemonEncounters {
+		fmt.Printf(" - %s\n", r.Pokemon.Name)
+	}
+	// fmt.Println(areaResp)
 
 	return nil
 }
