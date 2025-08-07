@@ -26,13 +26,13 @@ type EncounterMethod struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
 }
-type Version struct {
+type locVersion struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
 }
 type emrVersionDetails struct {
-	Rate    int     `json:"rate"`
-	Version Version `json:"version"`
+	Rate    int        `json:"rate"`
+	Version locVersion `json:"version"`
 }
 type EncounterMethodRates struct {
 	EncounterMethod EncounterMethod     `json:"encounter_method"`
@@ -68,7 +68,7 @@ type EncounterDetails struct {
 type peVersionDetails struct {
 	EncounterDetails []EncounterDetails `json:"encounter_details"`
 	MaxChance        int                `json:"max_chance"`
-	Version          Version            `json:"version"`
+	Version          locVersion         `json:"version"`
 }
 type PokemonEncounters struct {
 	Pokemon        Pokemon            `json:"pokemon"`
