@@ -10,9 +10,10 @@ import (
 )
 
 type Config struct {
-	pokeapiClient pokeapi.Client
-	nextURL       *string
-	prevURL       *string
+	pokeapiClient  pokeapi.Client
+	pokeapiPokedex pokeapi.Pokedex
+	nextURL        *string
+	prevURL        *string
 }
 
 type cliCommand struct {
@@ -20,6 +21,8 @@ type cliCommand struct {
 	description string
 	callback    func(c *Config, a string) error
 }
+
+// Commands map - tell users what they can enter, what it does and links to the callback command in pokeapi package
 
 func getCommand() map[string]cliCommand {
 	return map[string]cliCommand{
