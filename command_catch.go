@@ -24,8 +24,8 @@ func commandCatch(c *Config, a string) error {
 	target := 35
 
 	fmt.Printf("Throwing a Pokeball at %s...\n", a)
-	fmt.Printf("**DEBUG** Catch Chance:%v\n", catchChance)
-	fmt.Printf("Base experience: %v\n", pokemonResp.BaseExperience)
+	// fmt.Printf("**DEBUG** Catch Chance:%v\n", catchChance)
+	// fmt.Printf("Base experience: %v\n", pokemonResp.BaseExperience)
 
 	// Set catch chance based on target Pokemon's base experience
 	switch {
