@@ -23,3 +23,5 @@ Use the PokeAPI to make exploration more interesting. For example, rather than t
 Random encounters with wild pokemon
 
 Adding support for different types of balls (Pokeballs, Great Balls, Ultra Balls, etc), which have different chances of catching pokemon
+
+Lazy edit for streak...
