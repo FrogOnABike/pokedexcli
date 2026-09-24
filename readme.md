@@ -26,5 +26,5 @@ Adding support for different types of balls (Pokeballs, Great Balls, Ultra Balls
 
 Another lazy edit for streak...
 Must try harder tomorrow! And work out Feistal networks!
-Good discussion with Boots!
+Good discussion with Boots! Will action tomorrow
 
