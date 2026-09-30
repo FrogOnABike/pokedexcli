@@ -26,5 +26,9 @@ Adding support for different types of balls (Pokeballs, Great Balls, Ultra Balls
 
 Another lazy edit for streak...
 Must try harder tomorrow!
-Handyman duties call!
+
+Pad Msg
+
+Split plaintext into slice of BLOCKSIZED bytes - then pass the last one to padWithZeros and then replace the last slice.
+Rejoin them all and return that value
 
