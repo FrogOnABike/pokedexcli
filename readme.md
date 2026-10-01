@@ -31,4 +31,5 @@ Pad Msg
 
 Split plaintext into slice of BLOCKSIZED bytes - then pass the last one to padWithZeros and then replace the last slice.
 Rejoin them all and return that value
+Should start a new repo for this...
 
