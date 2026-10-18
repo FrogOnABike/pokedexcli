@@ -30,4 +30,4 @@ Must try harder tomorrow!
 Pad Msg
 
 Now on box substitution boxes and fun
-Can't loose another flame!
+On to Asymmetry now!
