@@ -25,3 +25,4 @@ Random encounters with wild pokemon
 Adding support for different types of balls (Pokeballs, Great Balls, Ultra Balls, etc), which have different chances of catching pokemon
 
 RSA maths tomorrow!
+May tomorrow again...
